@@ -1,0 +1,583 @@
+一、列表
+	List（列表） 是 Python 中使用 最频繁 的数据类型，在其他语言中通常叫做 数组，专门用于存储一串信息
+	列表用 [] 定义，数据 之间使用 , 分隔
+	列表的索引从 0 开始
+	注意：从列表中取值时,如果 超出索引范围，程序会报错
+	name_list=['zhangsan','lisi','wanger']
+	name_list2=['张三','李四','王二']
+1 输出列表的元素
+	print(name_list)   		//输出列表的全部元素
+	print(name_list[1])		//输出指定索引的元素
+2 向列表增加数据
+	name_list.append('aa')	//向列表末尾增加指定的元素
+	name_list.insert(2,'hs')//向指定索引处增加数据
+	name_list.extend(name_list2)	//将列表name_list2  增加到列表末尾
+3 删除列表的数据
+	name_list.remove('zhangsan')		//删除指定对象  注意：若该指定对象出现多次 ，则删除第一个，若不存在该对象，则报错。
+	del name_list[1]		//删除指定索引的数据  注意：是从内存中删除
+	name_list.pop(2)		//删除指定索引处的数据 并返回被删除的对象，默认不带参数则删除列表末尾数据
+	name_list.clear()		//清空列表元素
+4 统计列表元素
+	print(len(name_list))	//len(name_list)可以计算列表中元素的个数，相当于list.size()
+	print(name_list.count("张三"))		//name_list.count("zhangsgan")  可以统计指定元素出现的次数  
+5 列表的排序
+	name_list=['cc','aa','dd','ww','bb']
+	num_list=[3,6,1,9,5]
+	1)升序：
+		name_list.sort()
+		num_list.sort()
+	2)降序
+		name_list.sort(reverse=True)
+		num_list.sort(reverse=True)
+	3)逆序
+		name_list.reverse()
+		num_list.reverse()
+6 循环遍历列表
+	使用in关键字
+	arrays=['aa','bb','cc','dd']
+	for array in arrays:
+		print(array)
+		
+7.1 创建数值列表
+7.1.1 使用range()函数
+	Python 函数 range() 让你能够轻松地生成一系列的数字
+	例如：for value in range(1,10):       //包括1 不包括10
+			print(value)              //注意缩进和冒号
+7.1.2 使用range()创建数字列表
+	要创建数字列表，可使用函数 list() 将 range() 的结果直接转换为列表。
+	例如：
+	numbers=list(range(1,10))
+	print(numbers)
+	
+	使用range()还可以指定步长 类似java中的for循环
+	例如;
+	numbers=list(range(1,20,2))      //从1开始  每次加2 直到20为止 不包括20
+	pritn(numbers)
+	
+	在 Python 中，两个星号（ ** ）表示乘方运算
+	例如：
+	arrays=[]
+	for value in range(1,20):
+		newvalue=value**2
+		arrays.append(newvalue)
+	print(arrays)      //输出1-20每个数的平方
+7.1.3 对数字列表进行简单的统计
+	print("对数字列表进行简单的统计")
+	arrays=[1,10,3,90,-1,33]
+	print("最小的值为："+str(min(arrays)))
+	print("最大的值为："+str(max(arrays)))
+	print("平均值为："+str(sum(arrays)))
+
+7.1.4 列表解析
+	print("列表解析")
+	arrays=[value**2 for value in range(1,20)]    //该处for循环不用冒号
+	print(arrays)
+	要使用这种语法，首先指定一个描述性的列表名，如arrsys ；然后，指定一个左方括号，
+	并定义一个表达式，用于生成你要存储到列表中的值。在这个示例中，表达式为 value**2 ，
+	它计算平方值。接下来，编写一个 for 循环，用于给表达式提供值，再加上右方括号。
+
+8 切片 
+8.1 切片
+	1)要创建切片，可指定要使用的第一个元素和最后一个元素的索引。与函数 range() 一样， Python 在到达你指定的第二个索引前面的元素后停止。
+		例如：arrays=['aa','bb','cc','ddd','bbbb']
+		  print(arrays[0:3])   //输出0,1,2 这几个元素  aa,bb,cc 
+	2)生成列表的任何子集
+		例如：print(arrays[1:4]) //提取列表的第2~4个元素 bb,cc,ddd
+	3)如果你没有指定第一个索引， Python 将自动从列表开头开始：
+		例如：print(arrays[:4])  // 'aa','bb','cc','ddd'
+	4)让切片终止于末尾：
+		例如：print(arrays[2:])   //输出  从索引为2的开始到末尾
+	5)负数索引返回离列表末尾相应距离的元素
+		例如：print(arrays[-3:])  //输出最后三个元素 
+		
+8.2 遍历切片
+	arrays=['aa','bb','cc','dd','ee']
+	print('遍历切片')
+	for array in arrays[0:3]:
+		print(array)     //遍历输出前三个元素
+	print("遍历截止")
+
+8.3 复制列表
+	要复制列表，可创建一个包含整个列表的切片，方法是同时省略起始索引和终止索引（ [:] ）
+	例如：  myfoods=['apple','orange','bocai','aaa']
+			friendsfoods=myfoods[:]    //复制列表
+			print('w我喜欢的食物有：')
+			print(myfoods)
+			print('朋友喜欢的食物有')
+			print(friendsfoods)
+			
+二、 元组
+	Tuple（元组）与列表类似，不同之处在于元组的元素不能修改
+	元组 表示多个元素组成的序列
+	用于存储 一串 信息，数据 之间使用 , 分隔
+	元组用 () 定义
+	元组的 索引 从 0 开始
+	例如： arrays = ('aa','bb')
+1 创建一个空元组
+	arrays =()
+	print(type(arrays))		//<class 'tuple'> 类型为元组
+2 创建一个包含一个元素的元组
+	arrays=(5,)
+	print(type(arrays))		//<class 'tuple'>  类型为元组  
+	注意 ：该处需要指明"," 否则不是元组类型 而是int类型
+3 元组常见操作
+	arrays = ('张三','李四', '网二', '张三')
+	1)取值
+		print(arrays[1])
+	2)#取索引
+		print(arrays.index('张三'))
+	3)count 统计某一元素出现的次数
+		print(arrays.count("张三"))
+	4)len	统计元组中一共的数据
+		print(len(arrays))
+4 列表与元组之间的相互转换
+	name_list= ['aa', 'bb', 'cc']
+	1)将列表转换成元组
+		tuple_name_list = tuple(name_list)
+		print(type(tuple_name_list))
+		print(tuple_name_list)
+	2)将元组转成列表
+		list_name_list = list(tuple_name_list)
+		print(type(list_name_list))
+		print(list_name_list)
+		
+三、字典
+	dictionary（字典）是 除列表以外 Python 之中 最灵活 的数据类型
+	字典同样可以用来 存储多个数据
+	通常用于存储 描述一个 物体 的相关信息
+	例如：
+	persion = {"name": "huangshun",
+           "age": 23,
+           "height": 175.5
+           }
+	print(persion)
+1 字典和列表的区别
+	1)列表是有序的对象集合
+	2)字典是无序的对象集合
+	3)字典用 {} 定义
+	4)字典使用 键值对 存储数据，键值对之间使用 , 分隔
+		键 key 是索引 ,值 value 是数据
+		键 和 值 之间使用 : 分隔
+		键必须是唯一的
+		值可以取任何数据类型，但键只能使用字符串、数字或 元组
+2 字典的基本操作
+	persion = {"name":"huangshun"}
+	1)增加修改数据
+		persion["age"]=23
+		persion["name"]="HS"
+		如果要修改的键不存在，则是增加元素
+	2)查
+		print(persion["name"])
+	3)删除字典中的数据
+		persion.pop("name")
+3 字典的其他操作
+	1)计算字典中所包含的键值对数
+		persion ={'name': 'huangshun'}
+		print(len(persion))
+	2)合并字典
+		persion1 = {'age':18}
+		persion.update(persion1)
+		print(persion)
+		注意： 如果persion1中包含有与persion中相同的键，则会覆盖
+	3)清空字典
+		print(persion.clear())
+4 循环遍历字典
+	1)循环遍历字典中所有键值
+		persion = {"name": "huangshun", "age": 23, "height":175.5}
+		for key in persion:
+			print("%s -%s" %(key,persion[key]))
+		或者
+		for key,value in persion.items():
+			print("%s -%s" %(key,value))
+	2)循环遍历字典中的所有键
+		for key in persion.keys():
+			print(key)
+		可使用sorted()函数对键进行排序
+		for key in sorted(persion.keys()):
+			print(key)
+	3)循环遍历字典中的所有值
+		for value in persion.values():
+			print(value)
+		可以使用set()函数去除值中重复的值
+		for value in set(persion.values()):
+			print(value)
+5 字典和列表的嵌套使用
+	1)在列表中嵌套字典
+		arrays = [
+		{"name": "张三",
+		 "age": 16,
+		 "height": 175},
+		{"name": "lisi",
+		 "age": 14,
+		 "height": 159}
+		]
+		for array in arrays:
+			print(array)
+	2) 在字典中嵌套列表
+		print('在字典中存储列表')
+		favorite_languages={
+			'zhangsan':['c语言','python','java'],
+			'lisi':['java','php'],
+			'wangre':['html','javascript']
+			}
+		for name,languages in favorite_languages.items():
+			print("\n"+name.title()+'最喜欢的语言有：')
+			for language in languages:
+				print("\t"+language.title())
+		// 注意缩进和冒号  以及items()!!!
+	3)在字典中嵌套字典
+		users = {
+		"aeinstein": {
+			"first": "albert",
+			"last": 'einstein',
+			"location": 'princeton',
+		},
+		"mcurie": {
+			"first": 'marie',
+			"last": 'curie',
+			"location": 'paris',
+		},
+	}
+		for user, userinfo in users.items():
+			print("姓名为%s" % user)
+			for infokey, infovalue in userinfo.items():
+				print("key为　%s-值为%s" % (infokey, infovalue))
+			print("")
+
+		print("=============================")
+		#  方法２
+		for user, userinfo in users.items():
+			print(user+"的信息为：")
+			print("姓名为："+userinfo["first"]+userinfo["last"]+"\n"+"居住在："+userinfo["location"])
+
+四、字符串
+	字符串 就是 一串字符，是编程语言中表示文本的数据类型
+	在 Python 中可以使用 一对双引号 " 或者 一对单引号 ' 定义一个字符串
+	虽然可以使用 \" 或者 \' 做字符串的转义，但是在实际开发中：
+	如果字符串内部需要使用 "，可以使用 ' 定义字符串
+	如果字符串内部需要使用 '，可以使用 " 定义字符串
+	可以使用 索引 获取一个字符串中 指定位置的字符，索引计数从 0 开始
+	也可以使用 for 循环遍历 字符串中每一个字符
+1 字符串的基本使用
+	str = "hello hello"
+	print(len(str)) 		// 计算字符串的长度
+	print(str.count("llo"))	// 计算子字符串出现的次数
+	print(str.index("llo"))	// 计算子字符串第一次出现的索引
+	//看了一天课了  我想休息下了！！！
+	1)判断是否都是数字
+		str = "1"
+		print(str.isdecimal())
+		print(str.isdigit())
+		print(str.isnumeric())
+		都不能判断小数　
+		区别:　
+		isdigit可以判断unicode 字符串如平方之类
+		isnumeric可以判断中文
+	2)字符串的查找和替换
+		str = "hello world"
+		
+		print(str.startswith("hell"))	//判断是否以指定字符串开始
+		print(str.endswith("llo"))		//判读是否已指定字符串结束
+		print(str.find("llo"))			//返回执行字符第一次出现的索引
+		//注意：find()与index()函数不同之处在于
+			  若查找的字符串不存在，index()函数会报错，find()函数会返回-1
+		print(str.replace("world","python"))  //(old ,new ) 用新的字符串new替换旧的字符串old
+		print(str)
+		//注意：replace替换字符串 原来字符串并不会改变
+	3)文本对齐
+		| string.ljust(width) | 返回一个原字符串左对齐，并使用空格填充至长度 width 的新字符串 |
+		| string.rjust(width) | 返回一个原字符串右对齐，并使用空格填充至长度 width 的新字符串 |
+		| string.center(width) | 返回一个原字符串居中，并使用空格填充至长度 width 的新字符串 |
+	4)去除字符串首尾的空白字符
+		str = "   qq   "
+		print(str.strip())
+	5)拆分字符串和连接字符串
+		| string.split(str="", num) | 以 str 为分隔符拆分 string，如果 num 有指定值，则仅分隔 num + 1 个子字符串，str 默认包含 '\r', '\t', '\n' 和空格 |
+		| string.join(seq) | 以 string 作为分隔符，将 seq 中所有的元素（的字符串表示）合并为一个新的字符串 |
+		str="\n\t白日依山尽\n\t黄河入海流\n\t欲穷千里目\n\t更上一层楼"
+		list_split = str.split()		//将字符串拆分为一个列表
+		print("".join(list_split))		//以"" 为分隔符 将列表转成一个字符串
+
+2 字符串的切片
+	切片 方法适用于 字符串、列表、元组
+	切片 使用 索引值 来限定范围，从一个大的 字符串 中 切出 小的 字符串
+	列表 和 元组 都是 有序 的集合，都能够 通过索引值 获取到对应的数据
+	字典 是一个 无序 的集合，是使用 键值对 保存数据
+		注意：
+			1)指定的区间属于 左闭右开 型 [开始索引, 结束索引) => 开始索引 >= 范围 < 结束索引
+			2)从 起始 位开始，到 结束位的前一位 结束（不包含结束位本身)
+			3)从头开始，开始索引 数字可以省略，冒号不能省略
+			4)到末尾结束，结束索引 数字可以省略，冒号不能省略
+			5)步长默认为 1，如果连续切片，数字和冒号都可以省略
+	练习：str = "0123456789"
+			print("截取从 2 ~ 5 位置 的字符串"+str[2:6])
+			print("截取从 2 ~ 末尾 的字符串"+str[2:])
+			print("截取从 开始 ~ 5 位置 的字符串"+str[:6])
+			print("截取完整的字符串"+str[:])
+			print("从开始位置，每隔一个字符截取字符串"+str[::2]) # str[开始索引:结束索引：步长]
+			print("从索引 1 开始，每隔一个取一个"+str[1::2])
+			print("截取从 2 ~ 末尾 - 1 的字符串"+str[2:-1])
+			print("截取字符串末尾两个字符"+str[-2:])
+			print("字符串的逆序（面试题"+str[::-1])
+
+3 公共方法
+3.1 内置函数
+	Python 包含了以下内置函数：
+	| 函数 | 描述 | 备注 |
+	| --- | --- | --- |
+	| len(item) | 计算容器中元素个数 | |
+	| del(item) | 删除变量 | del 有两种方式 |
+	| max(item) | 返回容器中元素最大值 | 如果是字典，只针对 key 比较 |
+	| min(item) | 返回容器中元素最小值 | 如果是字典，只针对 key 比较 |
+	| cmp(item1, item2) | 比较两个值，-1 小于/0 相等/1 大于 | Python 3.x 取消了 cmp 函数 |
+	**注意**
+	* **字符串** 比较符合以下规则： "0" < "A" < "a"
+3.2 切片
+	| 描述 | Python 表达式 | 结果 | 支持的数据类型 |
+	| :---: | --- | --- | --- | --- |
+	| 切片 | "0123456789"[::-2] | "97531" | 字符串、列表、元组 |
+
+	1)切片 使用 索引值 来限定范围，从一个大的 字符串 中 切出 小的 字符串
+	2)列表 和 元组 都是 有序 的集合，都能够 通过索引值 获取到对应的数据
+	3)字典 是一个 无序 的集合，是使用 键值对 保存数据
+3.3 运算符
+	| 运算符 | Python 表达式 | 结果 | 描述 | 支持的数据类型 |
+	| :---: | --- | --- | --- | --- |
+	| + | [1, 2] + [3, 4] | [1, 2, 3, 4] | 合并 | 字符串、列表、元组 |
+	| * | ["Hi!"] * 4 | ['Hi!', 'Hi!', 'Hi!', 'Hi!'] | 重复 | 字符串、列表、元组 |
+	| in | 3 in (1, 2, 3) | True | 元素是否存在 | 字符串、列表、元组、字典 |
+	| not in | 4 not in (1, 2, 3) | True | 元素是否不存在 | 字符串、列表、元组、字典 |
+	| > >= == < <= | (1, 2, 3) < (2, 2, 3) | True | 元素比较 | 字符串、列表、元组 |
+3.4 成员运算符
+	成员运算符用于测试序列中是否包含指定的成员
+
+	| 运算符 | 描述 | 实例 |
+	| --- | --- | --- |
+	| in | 如果在指定的序列中找到值返回 True，否则返回 False | `3 in (1, 2, 3)` 返回 `True` |
+	| not in | 如果在指定的序列中没有找到值返回 True，否则返回 False | `3 not in (1, 2, 3)` 返回 `False` |
+	注意：在对字典操作时，判断的是字典的键
+3.5 完整的for循环
+	在 `Python` 中完整的 `for 循环` 的语法如下：
+		for 变量 in 集合:
+			循环体代码
+		else:
+			没有通过 break 退出循环，循环结束后，会执行的代码
+	例如：
+		for num in [1,2,3]:
+			print(num)
+			if num == 2:
+					break	// 如果循环体内部使用了break退出了 ，else下方的代码就不会执行
+		else:
+			print("执行了吗")
+		print("over")
+	应用场景：
+		* 在 **迭代遍历** 嵌套的数据类型时，例如 **一个列表包含了多个字典**
+		* 需求：要判断 某一个字典中 是否存在 指定的 值 
+			* 如果 **存在**，提示并且退出循环
+			* 如果 **不存在**，在 **循环整体结束** 后，希望 **得到一个统一的提示**
+			例如：
+				find_name="张三"
+				name_list=[
+					{"name": "张三"},
+					{"name": "李四"}
+				]
+				for persion in name_list:
+					print(persion)
+					if persion["name"] == find_name:
+						print("找到了%s" % find_name)
+						break
+				else:
+					print("抱歉没有找到该人")
+				print("循环结束")
+
+五、变量进阶
+	1) 函数不能直接修改 `全局变量的引用如果使用复赋值语句修改全局变量的值，只会在函数内部声明了一个同名的局部变量
+	2)如果希望在函数里面修改全局变量的值，可以在函数内部用global修饰全局变量,再次使用赋值语句时就不会创建局部变量了
+	例如:num =10
+		def demo1():
+			global num
+			num = 99
+			print(num)
+		def demo2():
+			print(num)
+		demo1()
+		demo2()
+	3)全局变量定义的位置
+		为了保证所有的函数都能够正确使用到全局变量，应该 将全局变量定义在其他函数的上方
+	4) 全局变量命名的建议
+		为了避免局部变量和全局变量出现混淆，在定义全局变量时，有些公司会有一些开发要求，例如：
+		全局变量名前应该增加 `g_` 或者 `gl_` 的前缀  
+		
+六、函数进阶	
+1 函数返回值进阶
+	在程序开发中，有时候，会希望一个函数执行结束后，告诉调用者一个结果，以便调用者针对具体的结果做后续的处理
+	返回值是函数 完成工作后，最后给调用者的一个结果
+	在函数中使用 `return` 关键字可以返回结果
+	调用函数一方，可以 使用变量来接收函数的返回结果
+	一个函数执行后可以返回多个结果
+2 可以利用元组返回多个结果
+	例如：
+	def measure():
+    """返回当前的温度"""
+
+    print("开始测量...")
+    temp = 39
+    wetness = 10
+    print("测量结束...")
+
+    return (temp, wetness)
+	//注意：如果一个函数返回的是元组，括号可以省略
+	
+	2)在 `Python` 中，可以 将一个元组使用赋值语句同时赋值给多个变量
+		注意：变量的数量需要和元组中的元素数量保持一致
+		例如：接受上个函数的返回值时可以这样做
+		result = temp, wetness = measure()
+3 面试题 交换两个函数的值
+	# 解法 1 - 使用临时变量
+	c = b
+	b = a
+	a = c
+	
+	# 解法 2 - 不使用临时变量
+	a = a + b
+	b = a - b
+	a = a - b
+	
+	#### 解法 3 —— Python 专有，利用元组
+	```python
+	a, b = b, a
+
+4 不可变和可变的参数
+	1)问题 1：在函数内部，针对参数使用 **赋值语句**，会不会影响调用函数时传递的 **实参变量**？ —— 不会！
+	* 无论传递的参数是 **可变** 还是 **不可变** 
+		* 只要 **针对参数** 使用 **赋值语句**，会在 **函数内部** 修改 **局部变量的引用**，**不会影响到 外部变量的引用**
+		
+	2)> 问题 2：如果传递的参数是 **可变类型**，在函数内部，使用 **方法** 修改了数据的内容，**同样会影响到外部的数据**
+	例如：def mutable(num_list):
+			# num_list = [1, 2, 3]
+			num_list.extend([1, 2, 3])
+			print(num_list)
+		gl_list = [6, 7, 8]
+		mutable(gl_list)
+		print(gl_list)
+	//输出 [6, 7, 8, 1, 2, 3]
+		   [6, 7, 8, 1, 2, 3]
+	//注意：在 `python` 中，列表变量调用 `+=` 本质上是在执行列表变量的 `extend` 方法
+	
+	面试题：def demo(num, num_list):
+			print("函数内部代码")
+			# num = num + num
+			num += num
+			# num_list.extend(num_list) 由于是调用方法，所以不会修改变量的引用
+			# 函数执行结束后，外部数据同样会发生变化
+			num_list += num_list
+			print(num)
+			print(num_list)
+			print("函数代码完成")
+		gl_num = 9
+		gl_list = [1, 2, 3]
+		demo(gl_num, gl_list)
+		print(gl_num)
+		print(gl_list)
+		
+5 缺省参数
+	* 定义函数时，可以给 **某个参数** 指定一个**默认值**，具有默认值的参数就叫做 **缺省参数**
+	* 调用函数时，如果没有传入 **缺省参数** 的值，则在函数内部使用定义函数时指定的 **参数默认值**
+	* 函数的缺省参数，**将常见的值设置为参数的缺省值**，从而 **简化函数的调用**
+	* 例如：对列表排序的方法
+	gl_num_list = [6, 3, 9]
+	# 默认就是升序排序，因为这种应用需求更多
+	gl_num_list.sort()
+	print(gl_num_list)
+	# 只有当需要降序排序时，才需要传递 `reverse` 参数
+	gl_num_list.sort(reverse=True)
+	print(gl_num_list)
+	
+1)指定函数的缺省参数
+		在参数后使用赋值语句，可以指定参数的缺省值
+		def persion(name, sex=True):
+			gl_sex = "男生"
+			if not sex:
+				gl_sex = "女生"
+			print("%s 是　%s" % (name, gl_sex))
+		persion("老王")
+		persion("小美", False)
+2)缺省参数的注意事项
+	1>缺省参数的定义位置
+		* **必须保证** **带有默认值的缺省参数** **在参数列表末尾**
+	2>调用带有多个缺省参数的函数
+		* 在 **调用函数时**，如果有 **多个缺省参数**，**需要指定参数名**，这样解释器才能够知道参数的对应关系！
+		例如：
+		def shuchu(name, title="", sex = True):
+			gl_sex = "男生"
+			if not sex:
+				gl_sex = "女生"
+			print("%s [%s] 是%s" %(name, title, gl_sex))
+		shuchu("老王", sex=True)
+
+6 多值参数
+	有时可能需要 **一个函数** 能够处理的参数 **个数** 是不确定的，这个时候，就可以使用 **多值参数**
+	`python` 中有两种多值参数：
+		1)参数名前增加 一个** 可以接收 **元组**
+		2)参数名前增加 两个** 可以接收 **字典**
+	一般在给多值参数命名时，**习惯**使用以下两个名字
+		*args —— 存放 “元组“ 参数，前面有一个 `*`
+		**kwargs —— 存放”字典“ 参数，前面有两个 `*`
+	args是 arguments的缩写，有变量的含义
+	kw是keyword的缩写，kwargs 可以记忆 键值对参数
+例如：
+			def demo(num, *args, **kwargs):
+				print(num)
+				print(args)
+				print(kwargs)
+			demo(1, 2, 3, 4, name="黄顺", age=18)
+		//多值参数求值 如下
+			def sum_numbers(*args):
+			sum = 0;
+			for num in args:
+				sum += num
+			print(sum)
+			print(args)
+		sum_numbers(1,2,3,4,5,6)
+		
+7 字典和元组的拆包
+	在调用带有多值参数的函数时，如果希望：
+    将一个元组变量，直接传递给 `args`
+    将一个字典变量，直接传递给 `kwargs`
+	就可以使用 拆包，简化参数的传递，拆包的方式是：
+    在元组变量前，增加一个`*`
+    在字典变量前，增加两个`*`
+	例如：
+	def demo(*args ,**kwargs):
+		print(args)
+		print(kwargs)
+	gl_nums = [1, 2, 3, 4]
+	gl_bum_list = {"name": "huangshun", "age": 18}
+	demo(*gl_nums, **gl_bum_list)
+	
+8 函数的递归
+	1)递归函数的特点
+		一个函数内部调用自己
+		函数内部可以调用其他函数，当然在函数内部也可以调用自己
+		代码特点
+		1. 函数内部的 代码是相同的，只是针对 参数不同,处理的结果不同
+		2. 当 参数满足一个条件时，函数不再执行
+			这个非常重要，通常被称为递归的出口，否则 会出现死循环！
+	例如：
+	def digui(num):
+		print(num)
+		if num == 1:
+			return
+		digui(num-1)
+	digui(100)
+	
+	2)递归案例 —— 计算数字累加
+		def sum_numbers(num):
+			if num == 1:
+				return 1
+			# 假设 sum_numbers 能够完成 num - 1 的累加
+			temp = sum_numbers(num - 1)
+			# 函数内部的核心算法就是 两个数字的相加
+			return num + temp
+		print(sum_numbers(2))
+

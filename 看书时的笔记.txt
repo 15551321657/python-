@@ -1,0 +1,884 @@
+python笔记：
+第3章 列表
+3.1 列表是什么
+	列表是由一系列按照特定顺序排列的元素组成
+	在 Python 中，用方括号“[]” 来表示列表，并用逗号来分隔其中的元素
+3.1.1 访问列表元素
+	print(arrays[0])  //访问列表的第一个元素
+	print(arrays[-1]) //访问列欧标的最后一个元素 索引 -2 返回倒数第二个列表元素，索引 -3 返回倒数第三个列表元素，以此类推。
+3.2.1 修改列表元素值
+	要修改列表元素，可指定列表名和要修改的元素的索引，再指定该元素的新值。
+3.2.2 在列表末尾添加元素
+	 motorcycles.append('ducati')
+	 使用方法 insert() 可在列表的任何位置添加新元素
+	 例如：arrays.insert(1,"aaa")   在列表的第一个位置插入aaa
+3.2.3 删除列表元素中的值
+	1. 使用 del 语句删除元素
+	如果知道要删除的元素在列表中的位置，可使用 del 语句，使用 del 可删除任何位置处的列表元素，条件是知道其索引
+	del arrays[0]     // 删除列表的第一个元素
+	
+	2. 使用pop()删除元素
+	方法 pop() 可删除列表末尾的元素，并让你能够接着使用它。 类似弹出栈顶的元素
+	例如： arrays=['aa','bb','cc']
+	poparr=arrays.pop()
+	print(arrays)    //输出为：['aa','bb']
+	print(poparr)    //输出为：cc
+	
+	3. 弹出列表中任何位置处的元素
+	例如： arrays.pop(0)   //弹出列表中的第一个元素
+	
+	4. 根据值删除元素
+	例如： arrays.remove('aa')
+	使用 remove() 从列表中删除元素时，也可接着使用它的值,remove只删除第一个指定的值 如果出现多次 可用循环判断是否删除所有
+4.1 遍历整个列表
+	for 循环  !!!注意缩进  缩进非常严格
+	例如：persions=['hungshun','zhnagsan','liosi','aaa']
+			print('for循环打印列表的值')
+			for persion in persions:        // :不能丢
+				print(persion)
+				print('符合缩进即可在循环输出')
+	在 for 循环中，想包含多少行代码都可以，每个缩进的代码行都是循环的一部分
+4.1.3 在for循环结束后执行一些操作
+	在for循环后面，没有缩进的代码都只执行一次，而不会重复执行
+4.3 创建数值列表
+4.3.1 使用range()函数
+	Python 函数 range() 让你能够轻松地生成一系列的数字
+	例如：for value in range(1,10):       //包括1 不包括10
+			print(value)              //注意缩进和冒号
+
+4.3.2 使用range()创建数字列表
+	要创建数字列表，可使用函数 list() 将 range() 的结果直接转换为列表。
+	例如：
+	numbers=list(range(1,10))
+	print(numbers)
+	
+	使用range()还可以指定步长 类似java中的for循环
+	例如;
+	numbers=list(range(1,20,2))      //从1开始  每次加2 直到20为止 不包括20
+	pritn(numbers)
+	
+	在 Python 中，两个星号（ ** ）表示乘方运算
+	例如：
+	arrays=[]
+	for value in range(1,20):
+		newvalue=value**2
+		arrays.append(newvalue)
+	print(arrays)      //输出1-20每个数的平方
+
+4.3.3 对数字列表进行简单的统计
+	print("对数字列表进行简单的统计")
+	arrays=[1,10,3,90,-1,33]
+	print("最小的值为："+str(min(arrays)))
+	print("最大的值为："+str(max(arrays)))
+	print("平均值为："+str(sum(arrays)))
+
+4.3.4 列表解析
+	print("列表解析")
+	arrays=[value**2 for value in range(1,20)]    //该处for循环不用冒号
+	print(arrays)
+	要使用这种语法，首先指定一个描述性的列表名，如arrsys ；然后，指定一个左方括号，
+	并定义一个表达式，用于生成你要存储到列表中的值。在这个示例中，表达式为 value**2 ，
+	它计算平方值。接下来，编写一个 for 循环，用于给表达式提供值，再加上右方括号。
+
+4.4 切片 
+4.4.1 切片
+	1)要创建切片，可指定要使用的第一个元素和最后一个元素的索引。与函数 range() 一样， Python 在到达你指定的第二个索引前面的元素后停止。
+		例如：arrays=['aa','bb','cc','ddd','bbbb']
+		  print(arrays[0:3])   //输出0,1,2 这几个元素  aa,bb,cc 
+	2)生成列表的任何子集
+		例如：print(arrays[1:4]) //提取列表的第2~4个元素 bb,cc,ddd
+	3)如果你没有指定第一个索引， Python 将自动从列表开头开始：
+		例如：print(arrays[:4])  // 'aa','bb','cc','ddd'
+	4)让切片终止于末尾：
+		例如：print(arrays[2:])   //输出  从索引为2的开始到末尾
+	5)负数索引返回离列表末尾相应距离的元素
+		例如：print(arrays[-3:])  //输出最后三个元素 
+		
+4.4.2 遍历切片
+	arrays=['aa','bb','cc','dd','ee']
+	print('遍历切片')
+	for array in arrays[0:3]:
+		print(array)     //遍历输出前三个元素
+	print("遍历截止")
+
+4.4.3 复制列表
+	要复制列表，可创建一个包含整个列表的切片，方法是同时省略起始索引和终止索引（ [:] ）
+	例如：  myfoods=['apple','orange','bocai','aaa']
+			friendsfoods=myfoods[:]    //复制列表
+			print('w我喜欢的食物有：')
+			print(myfoods)
+			print('朋友喜欢的食物有')
+			print(friendsfoods)
+			
+4.5 元组
+	列表非常适合用于存储在程序运行期间可能变化的数据集，然而，有时候需要创建一系列不可修改的元素，元祖可以满足这种需求
+	Python 将不能修改的值称为不可变的，而不可变的列表被称为元组
+4.5.1 定义元组
+	元组看起来犹如列表，但使用圆括号而不是方括号来标识
+
+4.5.2 遍历元组中的所有值
+	例如：  print('定义元组')
+			arrays=('aa','bb','cc','dd','ee')
+			print(arrays)
+			print("遍历元组中的值")
+			for array in arrays:
+				print(array)
+			print("遍历结束")
+4.5.3 修改元组变量
+	虽然不能修改元组的元素，但可以给存储元组的变量赋值。
+	例如：arrays=(100,200)
+		  arrays=(300,400)  // 正确
+		  arrays[0]=90   // 错误： TypeError: 'tuple' object does not support item assignment 会报错，不能修改元组元素的值
+
+第5章 if语句
+5.1 一个简单的示例
+	print("if语句的使用")
+	arrays=['aa','bb','cc','dd','ee']
+	for array in arrays:
+		if(array == 'bb'):   //如果列表中有bb  则将其转为大写
+			print(array.upper())
+		else:
+			print(array.title())   //首字母大写
+	// 一定要在注意冒号  和缩进！！！
+5.2.5 检查多个条件
+	1 使用and检查多个条件
+		要检查是否两个条件都为 True ，可使用关键字 and 将两个条件测试合而为一；
+		如果每个测试都通过了，整个表达式就为 True ；如果至少有一个测试没有通过，整个表达式就
+	为 False 。
+	2 使用or检查多个条件
+		关键字 or 也能够让你检查多个条件，但只要至少有一个条件满足，就能通过整个测试。
+		仅当两个测试都没有通过时，使用 or 的表达式才为 False 。
+	例如：  age1=16
+			age2=18
+			if((age1>15) and (age2>15)):
+				print("hahhhhhh")
+			print("or的使用")
+			if((age1>15) or (age2>20)):
+				print("有一个成功就行了")
+		//要注意if后面的冒号！
+5.2.6 检查特定值是否包含在列表中
+	要判断特定的值是否已包含在列表中，可使用关键字 in
+	例如：  print("检查特定字符")
+			arrays=['aa','bb','cc','dd']
+			if('aa' in arrays):
+				print("aa包含在列表中")
+				
+5.2.7 检查特定值不在列表中		
+	使用关键字 not in
+	例如：  arrays=['aa','b''cc']
+			print('检查特定字符不包含在列表中')
+			sum='bbb'
+			if(sum not in arrays):
+				print("sum不在其中")
+5.3.3 if-elif-else  结构
+	经常需要检查超过两个的情形，为此可使用 Python 提供的 if-elif-else 结构
+	例如:   print("if elesif使用")
+			age=12
+			if(age<4):
+				print("你的年龄为<4")
+			elif(age<14):
+				print("你的年龄小于14")
+			elif(age<16):
+				print("你的年龄小于16")
+			else:
+				print("你成年了")
+			//注意冒号和elif    不是eles if   else 有时可省略
+			
+5.4.2 确定列表不是空的
+	在 if 语句中将列表名用在条件表达式中， Python 将在列表至少包含一个元素时返回 True ，并在列表为空时返回 False 。
+	例如：  arrays=[]
+			if arrays:
+					for array in arrays:
+						print(arrays)
+			print("列表为空")
+5.2.3 使用多个列表
+	例如：  print("店里有的水果")
+			fruit=['apple','pear','orange']
+			print(fruit)
+			print("客户要求的水果")
+			requestFruit=['peach','banana','apple'];
+			print(requestFruit)
+			for requ in requestFruit:
+				if(requ not in fruit):
+					print("缺少水果"+requ)
+				else:
+					print("我们有该水果："+requ)
+			print("结束")
+		
+第6章 字典
+6.2 使用字典
+	1)在 Python 中， 字典 是一系列 键 — 值对 。每个 键 都与一个值相关联，你可以使用键来访问与之相关联的值。
+	 与键相关联的值可以是数字、字符串、列表乃至字典。事实上，可将
+	任何 Python 对象用作字典中的值。
+	2)在 Python 中，字典用放在花括号 {} 中的一系列键 — 值对表示
+	例如：  print("使用字典")
+			persion={'name':'hunagshun','age':'23'}
+			print(persion['name'])
+			print(persion['age'])
+	3）键 — 值 对是两个相关联的值。指定键时， Python 将返回与之相关联的值。键和值之间用冒号分隔，
+	   而键 — 值对之间用逗号分隔。在字典中，你想存储多少个键 — 值对都可以。
+	最简单的字典只有一个键值对；如下
+	persion={'name':'huangshun'}
+6.2.3 创建一个空字典
+	可先使用一对空的花括号定义一个字典
+	例如：persion={}
+	
+6.2.2 添加键 — 值对
+	字典是一种动态结构，可随时在其中添加键 — 值对。要添加键 — 值对，可依次指定字典名、用方括号括起的键和相关联的值
+	例如：persion['address']='宁波'
+	注意，键 — 值对的排列顺序与添加顺序不同。 Python 不关心键 — 值对
+	的添加顺序，而只关心键和值之间的关联关系。
+
+6.2.4 修改字典中的值
+	要修改字典中的值，可依次指定字典名、用方括号括起的键以及与该键相关联的新值
+	例如：persion['name']='HS'
+6.2.5 删除键值对
+	对于字典中不再需要的信息，可使用 del 语句将相应的键 — 值对彻底删除。使用 del 语句时，必须指定字典名和要删除的键。
+	例如: del psersion['name']
+	
+6.3 遍历字典
+6.3.1 遍历所有的键值对
+	1)遍历字典的 for 循环，可声明两个变量，用于存储键 — 值对中的键和值
+	2)for 语句的第二部分包含字典名和方法 items(),它返回一个键 — 值对列表
+	例如：  persion={'name':'huangshun','age':18,'address':'宁波'}
+			print("循环遍历字典")
+			for key,value in persion.items():
+				print("\nkey :"+key)
+				print("Value :"+str(value))
+				
+6.3.2 遍历字典中的所有键
+	在不需要使用字典中的值时，方法 keys() 很有用。
+	例如：	print("遍历字典中的所有键")
+			for key in persion.keys():
+				print("键为："+key)
+				
+6.3.3 按顺序遍历字典中的所有键
+	使用函数sorted() 对键进行排序
+	例如：
+	print("排序遍历字典中的所有键")
+	for key in sorted(persion.keys()):
+		print("键为："+key)
+	
+6.3.4 遍历字典中的所有值
+	1)可以使用values() 方法
+	例如：  print("遍历字典中的所有值")
+			for value in persion.values():
+				print("value: "+str(value))
+	
+	2)使用集合set() 可以去除重复项 集合类似于列表 但每个元素必须是独一无二的
+	例如：  print("使用set去除重复的值")
+			for value in set(persion.values()):
+				print(value)
+
+6.4 嵌套
+	有时候，需要将一系列字典存储在列表中，或将列表作为值存储在字典中，这称为 嵌套
+6.4.1 字典列表
+	例如:
+	print('字典列表')
+	persion1={'name':'zhangsan','age':'15'}
+	persion2={'name':'lisi','age':'14'}
+	persion3={'name':'wanger','age':'22'}
+	arrays=[persion1,persion2,persion3]
+	for persion in arrays:
+		print(persion)
+
+	显示列表的长度1可用 len() 函数  如下：
+	arrays=[]
+	for i in range(30):
+		new_persion={'name':'zhangsan','age':'15','number':i}
+		arrays.append(new_persion)
+	print('显示前五个人')
+	for persion in arrays[:5]:
+		print(persion)
+	print('一共创建了多少个人')
+	print(str(len(arrays)))
+
+6.4.2 在字典中存储列表
+	1)每当需要在字典中将一个键关联到多个值时，都可以在字典中嵌套一个列表
+	例如：
+	print('在字典中存储列表')
+	favorite_languages={
+		'zhangsan':['c语言','python','java'],
+		'lisi':['java','php'],
+		'wangre':['html','javascript']
+		}
+	for name,languages in favorite_languages.items():
+		print("\n"+name.title()+'最喜欢的语言有：')
+		for language in languages:
+			print("\t"+language.title())
+	// 注意缩进和冒号  以及items()!!!
+
+6.4.5 在字典中存储字典 见书吧   不想敲了  QAQ
+
+第七章 用户输入和whlie循环
+7.1 函数 input() 的工作原理
+	1)函数 input() 让程序暂停运行，等待用户输入一些文本。获取用户输入后， Python 将其存储在一个变量中，以方便你使用。
+	2)函数 input() 接受一个参数：即要向用户显示的 提示 或说明，让用户知道该如何做。
+	例如;
+	print("input()函数的使用")
+	message=input("请输入内容")
+	print(message)
+	3)实际中 使用int()  处理数值输入
+	例如：  print('使用int()获取数值输入')
+			length=input("请输入您的身高")
+			length=int(length)
+			print(length)
+			
+7.1.3 求模运算
+	1）求模运算符不会指出一个数是另一个数的多少倍，而只指出余数是多少。
+	2）如果一个数可被另一个数整除，余数就为 0 ，因此求模运算符将返回 0 。。
+	例如：  print('求模运算')
+			number=input("请输入你要计算的数字")
+			number=int(number)
+			if(number%2 == 0):
+				print("您输入的数为偶数")
+			else:
+				print("您输入的数为奇数")
+				
+7.2 while 循环简介
+	for 循环用于针对集合中的每个元素都一个代码块，而 while 循环不断地运行，直到指定的条件不满足为止。
+	例如：  print("while循环的使用")
+			aa=3
+			while aa<=115:
+				print(aa)
+				aa+=2
+7.2.3 使用标志
+	在要求很多条件都满足才继续运行的程序中，可定义一个变量，用于判断整个程序是否处于活动状态。这个变量被称为 标志
+	
+7.2.4 使用break退出循环
+	使用 break 语句。 break 语句用于控制程序流程，可使用它来控制哪些代码行将执行，
+	哪些代码行不执行，从而让程序按你的要求执行你要执行的代码。
+	例如：  print('使用break结束while循环')
+			txt="请输入一些东西"
+			txt+="\n 我们将帮你打印他"
+			while True:  
+				message=input(txt)
+				if(message == 'quit'):
+					print(message)
+					break
+				else:
+					print(message)
+	//  True  表示循环一直执行  为大写
+
+7.2.5 在循环中使用continue
+	要返回到循环开头，并根据条件测试结果决定是否继续执行循环，可使用 continue 语句，
+	continue是跳出这次循环，判断是否执行下个循环，break是跳出当前循环体
+	例如：  print("在循环中使用continue")
+			i=0
+			while i<=10:
+				i+=1
+				if(i%2 == 0):
+					continue
+				print(i)  // 输出了所有奇数
+			
+7.3.2 在列表之间移动元素利用while
+	for 循环是一种遍历列表的有效方式，但在 for 循环中不应修改列表，否则将导致 Python 难以跟踪其中的元素。
+	要在遍历列表的同时对其进行修改，可使用 while 循环
+	例如：  print("while 遍历列表")
+			user=['aa','cc','ss','ff']
+			print(user)
+			arrays=[]
+			while user:
+				persion=user.pop()
+				print("用户："+persion.title())
+				arrays.append(persion)
+			print(arrays)
+
+7.3.2 删除包含特定值的所有列表元素
+	删除列表中出现多次的重复元素
+	例如：  print('删除列表中特定元素')
+			pets = ['dog', 'cat', 'dog', 'goldfish', 'cat', 'rabbit', 'cat']
+			while 'cat' in pets:
+				pets.remove('cat')
+			print(pets)
+			
+7.3.3 使用用户输入来填充字典
+	    print("使用用户输入来填充字典")
+		responses={}
+		is_active=True
+		while is_active:
+			name=input("请输入你的姓名\n")
+			response=input("你最喜欢爬哪座山\n")
+			#将答案存储在字典里
+			responses[name]=response
+			#看看是否还有人要参与
+			message=input("你希望别人参加问卷调查么\n")
+			if message == 'no':
+				is_active=False
+		# 调查结果
+		print('开始打印结果')
+		for name,response in responses.items():
+			print(name+"你喜欢爬"+response+".")
+			
+	// 注意：给空字典填充数据的用法！！
+	
+	
+第八章 函数
+8.1 定义函数
+	1)使用关键字def 告诉python你要定义一个函数 
+	2)还可能在函数的()里指出函数为完成其任务需要什么样的信息
+	3）最后定义以冒号结尾
+	4)调用函数 可依次指定函数名以及用括号括其的必要信息
+	例如：  print('python 中函数的调用')
+			def welcome():
+				''' 显示简单的问候语 '''
+				print('hello world')
+				
+			welcome()
+8.1.1 向函数传递信息
+	def hello(username):
+		print("hello" +username.title()+"!")
+	hello('huangshun')	
+
+8.2 传递实参
+8.2.1 位置实参
+8.2.2 关键字实参
+	关键字实参 是传递给函数的名称 — 值对。
+	例如：  print('关键字实参')
+			def call_hello(username,age):
+				print("hello :"+username+" 你今年："+age+"岁了")
+			call_hello(username='huangshun',age='22')
+
+8.2.3 默认值
+	编写函数时，可给每个形参指定 默认值 。在调用函数中给形参提供了实参时， Python 将使用指定的实参值；否则，将使用形参的默认值
+	例如：def call_hello(username,age='23'):
+				print("hello"+username+"你"+age+"岁啦")
+		  call_hello('huanshun')
+
+8.3 返回值
+	函数并非总是直接显示输出，相反，它可以处理一些数据，并返回一个或一组值。函数返回的值被称为 返回值 。
+	在函数中，可使用 return 语句将值返回到调用函数的代码行。
+	例如：  print('返回简单值')
+			def call_hello(username):
+				return username.title()
+
+			user=call_hello('huangshun')
+			print(user)
+
+8.3.2 让实参变为可选
+	有时候，需要让实参变成可选的，这样使用函数的人就只需在必要时才提供额外的信息。可使用默认值来让实参变成可选的。
+	例如：  print('让实参变为可选')
+			def call_hello2(username,age,address=''):
+				if address:
+					print("hello :"+username+" 你"+age+"岁了"+"家住"+address)
+				else:
+					print("hello :"+username+" 你"+age+"岁了")
+			call_hello2('huangshun','22')
+			call_hello2('huangshun','22','宁波')
+	// 注意：	如果要使用可选实参 ，一定要让可选实（形）参位于最后一个位置，这样python才能正确的将位置实参关联到形参
+
+8.3.3 返回字典
+	函数可返回任何类型的值，包括列表和较为复杂的字段
+	例如：返回简单的字典
+	print('返回可变参数字典')
+	def call_hello2(username,password,address=''):
+		persion={'username':username,'password':password}
+		if address:
+			persion['address']=address
+		return persion
+	persion=call_hello2('hs','1234','宁波')
+	print(persion)
+	//注意 给字典赋值  和可变参数给字典赋值
+
+8.3.4 返回值结合函数和while循环
+	例如：  print('返回值集合函数和while循环')
+			def get_user_info(username,password):
+				user_info=username+''+password
+				return user_info
+			while True:
+				print("请输入您的相关信息")
+				print("输入q退出")
+				username=input('请输入用户名')
+				if username == 'q':
+					break
+				password=input('请输入密码')
+				if password == 'q':
+					break
+				user_info=get_user_info(username,password)
+				print(user_info)
+
+8.4 传递列表
+8.4.1 在函数中修改列表
+	例如：	print('在函数中修改列表')
+			def call_hello(names,newnames):
+				while names:
+					name=names.pop()
+					print("移除的name为："+name)
+					newnames.append(name)
+			#显示newname
+			def call_hello2(newnames):
+				for name in newnames:
+					print(name)
+			#调用函数
+			names=['aa','cc','bb','dd']
+			newnames=[]
+			call_hello(names,newnames)
+			call_hello2(newnames)
+	
+8.4.2 禁止修改列表
+	为了解决传递过程中函数修改列表,可以向函数中传递列表的副本
+	例如：print_models(unprinted_designs[:], completed_models)
+
+8.5 传递任意数量的实参
+	例如：  print('传递任意数量的实参')
+			def call_hello(*toppings):
+				for top in toppings:
+					print("传递进来的实参有："+top)
+
+			call_hello("aa")
+			call_hello('aa','bb','cc')
+	// 注意：形参名 *toppings 中的星号让 Python 创建一个名为 toppings 的空元组，并将收到的所有值都封装到这个元组中
+
+8.5.1 结合使用位置实参和任意数量实参
+	例如：  print('结合使用位置实参和任意数量实参')
+			def call_hello(name,*infos):
+				print('name为：'+name)
+				for info in infos:
+					print(info)
+			call_hello('huagshun','1234','宁波')
+	// 注意：如果要让函数接受不同类型的实参，必须在函数定义中将接纳任意数量实参的形参放在最后。 
+			 Python 先匹配位置实参和关键字实参，再将余下的实参都收集到最后一个形参中。
+
+8.5.2 使用任意数量的关键字实参
+	例如：#关键字实参是键值对
+			print('使用任意数量的关键字实参')
+			def call_hello(name,**infos):
+				#创建一个字典
+				persion={}
+				persion['name']=name
+				for key,value in infos.items():
+					persion['key']=value
+				return persion
+			persion=call_hello('huangshun',password='123',address='宁波')
+			print(persion)
+	// 注意 形参 **infos 中的两个星号让 Python 创建一个名为 infos 的空字典，并将收到的所有名称 — 值对都封装到这个字典中。
+
+第九章 类
+9.1 创建和使用类
+	例如：
+	#创建类
+		class Dog():
+			#模拟小狗的简单尝试
+			def __init__(self,name,age):
+			#初始化属性name和age
+				self.name=name
+				self.age=age
+			
+			def run(self):
+				print(self.name+" 在跑")
+				
+			def info(self):
+				print('小狗的信息为：'+self.name)
+
+		my_dog=Dog('小白','5')
+		my_dog.info()
+		my_dog.run()
+// 注意：1)方法 __init__() 是一个特殊的方法，每当你根据 Dog 类创建新实例时， Python 都会自动运行它。在这个方法的名称中，开头和末尾各有两个下划线，
+			这是一种约定，旨在避免 Python 默认方法与普通方法发生名称冲突。
+		 2)我们将方法 __init__() 定义成了包含三个形参： self 、 name 和 age 。在这个方法的定义中，形参 self 必不可少，还必须位于其他形参的前面。
+			因为 Python 调用这个 __init__() 方法来创建 Dog 实例时，将自动传入实参 self 。每个与类相关联的方法调用都自动传递实参 self ，
+			它是一个指向实例本身的引用，让实例能够访问类中的属性和方法
+		 3)定义的两个变量都有前缀 self 。以 self 为前缀的变量都可供类中的所有方法使用，我们还可以通过类的任何实例来访问这些变量。
+		 
+9.2.2 给属性指定默认值	
+	1)类中的每个属性都必须有初始值，哪怕这个值是 0 或空字符串。在有些情况下，如设置默认值时，在方法 __init__() 内指定这种初始值是可行的；如果你对某个属性这样做
+	了，就无需包含为它提供初始值的形参。
+	例如：
+	    print('给属性指定默认值')
+		class Persion():
+			def __init__(self,name,age):
+				self.name=name
+				self.age=age
+				#给属性指定默认值
+				self.length=178
+			def eat(self):
+				print(self.name+" 正在吃早餐")
+			def info(self):
+				return self.name+'的年龄为： '+str(self.age)
+				
+			def read_length(self):
+				print(self.name+" 的身高为："+str(self.length))
+		persion=Persion('huangshun',13)
+		persion.eat()
+		persion.read_length()
+		info=persion.info()
+		print(info)
+9.2.3 修改属性的值
+	1)直接修改属性的值
+	要修改属性的值，最简单的方式是通过实例直接访问它
+	2)通过方法修改属性的值
+	3)通过方法对属性值进行递增
+	
+9.3 继承
+9.3.1 子类的方法__init__()
+	1)一个类 继承 另一个类时，它将自动获得另一个类的所有属性和方法；原有的类称为父类 ，而新类称为 子类 。
+	子类继承了其父类的所有属性和方法，同时还可以定义自己的属性和方法。
+	例如：
+	print('继承')
+	#定义父类
+	class Persion():
+		def __init__(self,name,age):
+			self.name=name
+			self.age=age
+			#给属性指定默认值
+			self.length=178
+		def eat(self):
+			print(self.name+" 正在吃早餐")
+		def info(self):
+			return self.name+'的年龄为： '+str(self.age)
+			
+		def read_length(self):
+			print(self.name+" 的身高为："+str(self.length))
+
+	#定义子类
+	class Man(Persion):
+		def __init__(self,name,age):
+			super().__init__(name,age)
+			
+		#子类特殊的方法
+		def is_man(self):
+			print('是一个男人')
+		
+	man=Man('huangshun',22)
+	man.read_length()
+//注意：1)创建子类的实例时， Python 首先需要完成的任务是给父类的所有属性赋值
+		2)创建子类时，父类比逊包含在当前文件中，定义子类时，必须在括号内定义父类的方法名称。
+			方法__init__()接受创建父类实例所需的信息
+		3）super()是一个特殊函数 ，帮助python将父类和子类关联起来
+
+9.3.4 重写父类的方法
+	对于父类的方法，只要它不符合子类模拟的实物的行为，都可对其进行重写。
+	为此，可在子类中定义一个这样的方法，即它与要重写的父类方法同名。
+	例如：在上面的子类man中重写
+		def eat(self):
+			print('走，去吃海底捞')
+9.3.5 将实例用作属性
+	见书！
+9.4 导入类
+9.4.1 导入单个类
+	例如：from persion import Persion   // 从persion.py导入Persion这个类
+9.4.3 从一个模块中导入多个类
+	例如：from car import Car, ElectricCar   // 从car.py文件中导入Car类和ElectricCar类
+9.4.4 导入整个模块
+	import car   //将整个car.py导入
+9.4.5 导入模块中的所有类
+	form module_name import *  //不推荐
+	
+	
+9.5 Python标准库
+	Python 标准库 是一组模块，安装的 Python 都包含它\
+	字典不能记录添加键值对的顺序，要记录添加键值对的顺序，可使用模块collections中的OrderedDict
+	类，OrderedDict与字典区别在于记录了键值对添加顺序
+	例如：
+	from collections import OrderedDict
+	
+	print('python标准库')
+	#该处创建了一个有序的空字典
+	like_languages=OrderedDict()
+	like_languages['huangshun']='java'
+	like_languages['zhnagsan']='c'
+	like_languages['lisi']='python'
+	for name,language in like_languages.items():
+		print(name+"喜欢的语言是"+language)
+		
+9.6 类编码风格
+	1）类名应采用 驼峰命名法 ，即将类名中的每个单词的首字母都大写，而不使用下划线
+	2）实例名和模块名都采用小写格式，并在单词之间加上下划线。
+	3）对于每个类，都应紧跟在类定义后面包含一个文档字符串。这种文档字符串简要地描述类的功能，并遵循编写函数的文档字符串时采用的格式约定。
+	   每个模块也都应包含一个文档字符串，对其中的类可用于做什么进行描述。
+	4）在类中，使用一个空行分隔方法，在模块中，使用两个空行分隔类
+	5）在导入标准库中的模块和自己编写的模块时，先导入标准库的import语句
+		然后再导入自己编写模块的import语句
+	
+	
+第10章 文件和异常
+10.1 从文件中读取数据
+	例如：  with open('aa.txt') as readfile_object:	
+				contents=readfile_object.read()
+				print(contents.rstrip())
+//注意：1）函数open() 用于打开文件，接受一个参数，参数为要打开的文件名称
+			open（）也了接受一个相对路径或者绝对路径
+		2）Python在当前执行文件所在目录中国查找指定的文件，函数open() 返回一个表示文件的对象
+		3）as 后面的为表示文件的对象，然后使用read()读取文件的全部内容，并存储在字符串变量中
+		4）要删除多出来的空行，可在 print 语句中使用 rstrip() 
+
+10.1.3 逐行读取文件 
+	例如：  print('逐行读取文件')
+			with open('aa.txt') as file_object:
+				for line in file_object:
+					print(line.rstrip())
+10.1.4 创建一个包含文件各行内容的列表
+	例如：  print('创建一个包含文件各行内容的列表')
+			with open('aa.txt') as file_object:
+				lines=file_object.readlines()
+			for line in lines:
+				print(line.rstrip())
+				
+	// 注意：1)readlines()从文件中读取每一行，并将其存储在一个列表中
+			 2)使用该种方式，可在with代码块之外 使用读取到的内容
+			 3）strip可删除每行左边的空格
+
+10.2 写入文件
+	例如：  print('写入文本')
+			with open('aa.txt','w') as file_object:
+				file_object.write('测试写入文件')
+	1)要将文本写入文件，在调用open() 时需要提供另外一个参数
+	2）第一个参数：既要打开的文件的名称
+	   第二个参数：('w')告诉python，我们要以写入模式打开这个文件
+	   打开文件时，可指定读取模式('r')、写入模式('w')、附加模式（'a'）
+	   或者让你能够读取和写入的文件模式（'r+'）,不指明，则默认是只读模式打开
+	3）文件对象的write()将一个字符串写入文件，以写入（ 'w' ）模式打开文件时千万要小心，
+	   因为如果指定的文件已经存在， Python 将在返回文件对象前清空该文件
+	4）Python 只能将字符串写入文本文件。要将数值数据存储到文本文件中，必须先使用函数 str() 将其转换为字符串格式。
+
+10.2.3 附加到文件
+	1)如果你要给文件添加内容，而不是覆盖原有的内容，可以 附加模式 打开文件。
+	2)以附加模式打开文件时，Python 不会在返回文件对象前清空文件，而你写入到文件的行都将添加
+	  到文件末尾。如果指定的文件不存在， Python 将为你创建一个空文件。
+	 例如 ：print('附加到文件')
+			with open('aa.txt','a') as file_object:
+				file_object.write("你好，我是附加方式存储的文件\n")
+				file_object.write('好的！！\n') 
+	
+10.3 异常
+	1)Python 使用被称为 异常 的特殊对象来管理程序执行期间发生的错误
+	2)异常是使用 try-except 代码块处理的。 try-except 代码块让 Python 执行指定的操作，同时告诉 Python 发生异常时怎么办
+	  
+10.3.4 else代码块 
+	处理异常 例如：
+	print('处理异常')
+	print("输入两个数，计算其相的结")
+	print('按q退出')
+	while True:
+		first_number=input('请输入第一个数')
+		if first_number == 'q':
+			break
+		second_number=input('请输入第二个数')
+		if second_number == 'q':
+			break
+		try:
+			answer=int(first_number) / int(second_number)
+		except ZeroDivisionError:
+			print('0不能做除数')
+		else:
+			print(answer)
+// 注意：1) 该处处理0不能为除数的异常ZeroDivisionError
+		 2) 过将可能引发错误的代码放在 try-except 代码块中，可提高这个程序抵御错误的能力
+		 3)依赖于 try 代码块成功执行的代码都应放到 else 代码块中
+		
+10.3.5 处理 FileNotFoundError 异常
+	1)使用文件时，一种常见的问题就是找不到文件
+	例如：
+	print('处理文件未找到异常')
+	try:
+		with open('bb.txt') as file_object:
+			contents=file_object.read()
+			print(contents)
+	except FileNotFoundError:
+		print("对不起，为发现你要修改的文件")
+
+10.3.6 分析文本
+	1)方法 split() 以空格为分隔符将字符串分拆成多个部分，并将这些部分都存储到一个列表中
+	例如：  print('分析文本')
+			title='Alice is a beautiful girl'
+			aa=title.split()
+			print(aa)
+10.3.7 使用多个文件
+	例如：
+	print('分析长文本')
+	filename='aa.txt'
+	try:
+		with open(filename) as file_object:
+			contents=file_object.read()
+	except FileNotFoundError:
+		print("Sorry,未发现该文件")
+
+	else:
+		#计算文件大概有多少单词
+		words=contents.split()
+		for line in words:
+			print(line)
+		size=len(words)
+		print(size)
+
+10.3.8 　失败时一声不吭
+	1)可在except代码块中使用pass
+	2)要让程序在失败时一声不吭，可像通常那样编写 try 代码块，但在 except 代码块中明确地告诉 Python 什么都不要做.
+	  Python 有一个 pass 语句，可在代码块中使用它来让 Python什么都不要做
+	例如：  print('处理文件未找到异常使用pass')
+			try:
+				with open('bb.txt') as file_object:
+					contents=file_object.read()
+			except FileNotFoundError:
+				pass
+			else:
+				print(contents)
+//可以使用count() 统计特定短语出现的次数
+例如：  line = "Row, row, row your boat"
+		print(line.count('row'))
+
+10.4 存储数据
+10.4.1 使json.dump()和json.load()
+	1)函数 json.dump() 接受两个实参：要存储的数据以及可用于存储数据的文件对象。
+	使用 json.dump() 来存储这组数字
+	例如：  import json
+			print('使用json,dump()存储数据')
+			filename='number.json'
+			numbers=[1,2,3,4,5]
+			with open(filename,'w') as file_object:
+				json.dump(numbers,file_object)
+	2)使用 json.load() 将这个列表读取到内存中
+	例如：  import json
+			print('使用 json.load() 将这个列表读取到内存中')
+			filename='number.json'
+			with open(filename) as file_object:
+				numbers=json.load(file_object)
+			print(numbers)
+10.4.2 保存和读取用户生成的数据
+	例如;
+	import json
+	print('json.dump()和json.load()的结合使用')
+	filename='userinfo.json'
+	try:
+		with open(filename) as userinfo:
+			username=json.load(userinfo)
+	except FileNotFoundError:
+		#如果文件未发现 就提示用户输入用户名
+		username=input("请输入用户名")
+		with open(filename,'w') as file_object:
+			json.dump(username,file_object)
+	else:
+		print('欢迎你：'+username)
+
+10.4.3 重构
+	1)可做进一步的改进 —— 将代码划分为一系列完成具体工作的函数。这样的过程被称为 重构 
+	2)重构让代码更清晰、更易于理解更容易扩展。
+	例如：
+	import json
+	print('函数的重构')
+	def get_user():
+		#获取用户名
+		filename="userinfo.json"
+		try:
+			with open(filename) as file_object:
+				username=json.load(file_object)
+		except FileNotFoundError:
+			return None
+		else:
+			return username
+	def store_user():
+		username=input('请输入用户名')
+		filename='user_info.json'
+		with open(filename,'w') as file_object:
+			json.dump(username,file_object)
+	def hello():
+		print('函数的重构')
+		username=get_user()
+		if username:
+			#用户不为空
+			print('欢迎你：'+username)
+		else:
+			store_user()
+	hello()
+	
+//项目学习阶段
